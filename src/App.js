@@ -8,7 +8,14 @@ import Article from "./components/Article";
 import Logout from "./components/Logout";
 import Login from "./components/Login";
 
-import { FlatList, ActivityIndicator, Text, View } from "react-native";
+import { FlatList, ActivityIndicator} from "react-native";
+import {
+  Text,
+  View,
+  Title,
+  GridView,
+  NavigationBar,
+} from '@shoutem/ui';
 
 export default class Thoro extends React.Component {
   constructor(props) {
@@ -51,7 +58,6 @@ export default class Thoro extends React.Component {
   }
 
   render() {
-    console.log("this.state APP", this.state);
     if (this.state.isLoading) {
       return (
         <View
@@ -70,15 +76,20 @@ export default class Thoro extends React.Component {
     }
 
     return (
-      <View style={{ flex: 1, paddingTop: 100 }}>
-        <Logout userLogout={this.userLogout} />
-        <Article
-          // title={this.state.articleTitle}
-          // description={this.state.articleDescription}
-          title="WTF"
-          description="Another WTF news!!"
+      <React.Fragment>
+        <NavigationBar 
+          rightComponent={<Logout userLogout={this.userLogout} />}
+          centerComponent={<Title>TOP CLUSTERS</Title>}
         />
-      </View>
+        <View style={{ flex: 1, paddingTop: 100 }}>
+          <Article
+            // title={this.state.articleTitle}
+            // description={this.state.articleDescription}
+            title="WTF"
+            description="Another WTF news!!"
+          />
+        </View>
+      </React.Fragment>
     );
   }
 }

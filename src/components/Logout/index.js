@@ -4,23 +4,24 @@ import PropTypes from 'prop-types';
 import { removeCredentials } from '../../api/utils/credentials';
 
 import {
-  TouchableOpacity,
+  Button,
   Text,
+  Icon
 } from '@shoutem/ui';
 
 class Logout extends Component {
   render() {
     const { userLogout } = this.props;
     return (
-      <TouchableOpacity
+      <Button
         onPress={() => {
             removeCredentials()
               .then(() => userLogout())
           }
         }
       >
-        <Text>Logout</Text>
-      </TouchableOpacity>
+        <Icon name="exit-to-app" />
+      </Button>
     );
   }
 }
