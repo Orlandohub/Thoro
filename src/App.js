@@ -77,7 +77,8 @@ export default class Thoro extends React.Component {
 
     return (
       <React.Fragment>
-        <NavigationBar 
+        <NavigationBar
+        styleName="inline"
           rightComponent={<Logout userLogout={this.userLogout} />}
           centerComponent={<Title>TOP CLUSTERS</Title>}
         />
