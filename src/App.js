@@ -3,8 +3,9 @@ import { authenticate } from "./api/authentication";
 import { handleResponse } from "./api/utils/responseHandler";
 import { getTopics } from "./api/topics";
 import { getArticles } from "./api/articles";
-import { getCredentials, removeCredentials } from './api/utils/credentials';
+import { getCredentials } from './api/utils/credentials';
 import Article from "./components/Article";
+import Logout from "./components/Logout";
 import Login from "./components/Login";
 
 import { FlatList, ActivityIndicator, Text, View } from "react-native";
@@ -19,6 +20,7 @@ export default class Thoro extends React.Component {
     }
 
     this.authenticateUser = this.authenticateUser.bind(this);
+    this.userLogout = this.userLogout.bind(this);
   }
 
   authenticateUser() {
@@ -30,6 +32,12 @@ export default class Thoro extends React.Component {
       .then(topicsData => {
         console.log('topicsData', topicsData);
       });
+  }
+
+  userLogout() {
+    this.setState({
+      isAuthenticated: false,
+    })
   }
 
   componentDidMount() {
@@ -63,6 +71,7 @@ export default class Thoro extends React.Component {
 
     return (
       <View style={{ flex: 1, paddingTop: 100 }}>
+        <Logout userLogout={this.userLogout} />
         <Article
           // title={this.state.articleTitle}
           // description={this.state.articleDescription}
