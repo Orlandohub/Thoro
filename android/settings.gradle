@@ -1,0 +1,3 @@
+rootProject.name = 'thoro'
+
+include ':app'
