@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@shoutem/ui": "^0.23.4",
     "btoa": "^1.2.1",
     "prop-types": "^15.6.2",
     "react": "16.6.0-alpha.8af6728",
