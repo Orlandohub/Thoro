@@ -17,6 +17,7 @@ import {
 
 import ClusterArticles from '../ClusterArticles';
 import { getTopics } from '../../api/topics';
+import styles from './styles';
 
 class Topics extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class Topics extends Component {
       return (
         <Card styleName="flexible">
           <View styleName="content">
-            <Subtitle>{cluster.mainTheme[0]}</Subtitle>
+            <Subtitle style={styles.topicLabel}>{cluster.mainTheme[0]}</Subtitle>
             <ClusterArticles cluster={cluster} />
           </View>
         </Card>
