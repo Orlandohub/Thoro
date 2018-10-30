@@ -1,14 +1,12 @@
 import { handleResponse } from './utils/responseHandler';
 import { getCredentials } from './utils/credentials';
 
-export function getArticles(topicsData, data) {
+export function getArticles(queryData) {
   return getCredentials()
     .then(token => {
       console.log('token on article', token);
       return fetch(
-          `https://getter.thoro.news/api/article/${
-            topicsData.data[0].articles[0]
-          }`,
+          `https://getter.thoro.news/api/article/${queryData}`,
           {
             method: "GET",
             headers: {

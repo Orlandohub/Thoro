@@ -1,12 +1,12 @@
 import React from "react";
 import { authenticate } from "./api/authentication";
 import { handleResponse } from "./api/utils/responseHandler";
-import { getTopics } from "./api/topics";
 import { getArticles } from "./api/articles";
 import { getCredentials } from './api/utils/credentials';
 import Article from "./components/Article";
 import Logout from "./components/Logout";
 import Login from "./components/Login";
+import Topics from './components/Topics';
 
 import { FlatList, ActivityIndicator} from "react-native";
 import {
@@ -33,12 +33,7 @@ export default class Thoro extends React.Component {
   authenticateUser() {
     this.setState({
       isAuthenticated: true,
-    })
-
-    return getTopics()
-      .then(topicsData => {
-        console.log('topicsData', topicsData);
-      });
+    });
   }
 
   userLogout() {
@@ -82,13 +77,8 @@ export default class Thoro extends React.Component {
           rightComponent={<Logout userLogout={this.userLogout} />}
           centerComponent={<Title>TOP CLUSTERS</Title>}
         />
-        <View style={{ flex: 1, paddingTop: 100 }}>
-          <Article
-            // title={this.state.articleTitle}
-            // description={this.state.articleDescription}
-            title="WTF"
-            description="Another WTF news!!"
-          />
+        <View style={{ flex: 1 }}>
+          <Topics />
         </View>
       </React.Fragment>
     );
