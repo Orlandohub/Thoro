@@ -17,11 +17,12 @@ import {
 import _ from 'lodash';
 
 import { getArticles } from '../../api/articles';
+import styles from './styles';
 
 class ClusterArticles extends Component {
   constructor(props) {
     super(props);
-    this.renderRow = this.renderRow.bind(this);
+    this.renderArticles = this.renderArticles.bind(this);
 
     this.state = {
       articles: null,
@@ -42,32 +43,21 @@ class ClusterArticles extends Component {
       })
   }
 
-  renderRow(rowData, sectionId, index) {
-    // rowData contains grouped data for one row,
-    // so we need to remap it into cells and pass to GridRow
-    console.log('rowData', rowData);
-    if (index === '0') {
-      console.log('rowData[0]', rowData[0]);
-      return (
-        <TouchableOpacity key={index}>
-          <Tile>
-            <Title styleName="md-gutter-bottom">{rowData[0].title}</Title>
-            <Caption styleName="sm-gutter-horizontal">By {rowData[0].domain}</Caption>
-          </Tile>
-          <Divider styleName="line" />
-        </TouchableOpacity>
-      );
-    }
-
-    const cellViews = rowData.map((article, id) => {
+  renderArticles(articles) {
+    return _.map(articles, (article, id) => {
       console.log('article on cellViews', article);
       return (
-        <TouchableOpacity key={index}>
-          <Tile>
-            <Title styleName="md-gutter-bottom">{article.title}</Title>
-            <Caption styleName="sm-gutter-horizontal">By {article.domain}</Caption>
+        <TouchableOpacity style={styles.article} key={id}>
+          <Tile style={{backgroundColor: '#F0F0F0'}}>
+            {
+              id === 0 ?
+                <Title styleName="sm-gutter-bottom bold" style={styles.articleTitle}>{article.title}</Title>
+                :
+                <Subtitle styleName="sm-gutter-bottom" style={styles.articleTitle}>{article.title}</Subtitle>
+            }
+            
+            <Caption>By {article.domain}</Caption>
           </Tile>
-          <Divider styleName="line" />
         </TouchableOpacity>
       );
     });
@@ -81,28 +71,17 @@ class ClusterArticles extends Component {
 
   render() {
     const { articles } = this.state;
-    // console.log('articles', articles);
-
-    let isFirstArticle = true;
-    const groupedData = GridRow.groupByRows(articles, 2, () => {
-      if (isFirstArticle) {
-        isFirstArticle = false;
-        return 2;
-      }
-      return 1;
-    });
 
     return (
-      <ListView
-        data={groupedData}
-        renderRow={this.renderRow}
-      />
+      <View>
+        {this.renderArticles(articles)}
+      </View>
     );
   }
 }
 
 ClusterArticles.propTypes = {
-  cluster: PropTypes.array.isRequeired,
+  cluster: PropTypes.array,
 }
 
 

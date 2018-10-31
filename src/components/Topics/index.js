@@ -1,3 +1,4 @@
+import { ActivityIndicator } from "react-native";
 import React, { Component } from 'react';
 import _ from 'lodash';
 import {
@@ -9,9 +10,9 @@ import {
   Subtitle,
   Divider,
   Card,
-  GridRow,
   ListView,
   Tile,
+  Icon,
   Image,
 } from '@shoutem/ui';
 
@@ -27,6 +28,7 @@ class Topics extends Component {
 
     this.state = {
       clusters: null,
+      isLoading: true,
     }
   }
 
@@ -37,42 +39,40 @@ class Topics extends Component {
         const { data } = topicsResponse;
         this.setState({
           clusters: data,
+          isLoading: false,
         });
       });
   }
 
-  renderRow(rowData, sectionId, index) {
-    // rowData contains grouped data for one row,
-    // so we need to remap it into cells and pass to GridRow
-    const cellViews = rowData.map((cluster, id) => {
-      return (
-        <Card styleName="flexible">
-          <View styleName="content">
-            <Subtitle style={styles.topicLabel}>{cluster.mainTheme[0]}</Subtitle>
-            <ClusterArticles cluster={cluster} />
-          </View>
-        </Card>
-      );
-    });
-
+  renderRow(cluster) {
     return (
-      <GridRow columns={1}>
-        {cellViews}
-      </GridRow>
+      <View styleName="vertical h-start" style={styles.clusterTile}>
+        <View styleName="horizontal v-center" style={styles.topicLabel}>
+          <Icon name="products" />
+          <Subtitle styleName="bold"> {_.capitalize(cluster.mainTheme[0])} </Subtitle>
+        </View>
+        <ClusterArticles cluster={cluster} />
+      </View>
     );
   }
 
   render() {
-    const { clusters } = this.state;
-    const groupedData = GridRow.groupByRows(clusters, 1, () => {
-        return 1;
-    });
+    const clusters = this.state.clusters || {};
 
     return (
-      <ListView
-        data={groupedData}
-        renderRow={this.renderRow}
-      />
+      <View styleName="md-gutter-horizontal">
+        <ListView
+          style={{ listContent: { backgroundColor: 'white' }}}
+          loading={true}
+          renderHeader={() => (
+            <View styleName="horizontal h-start" style={styles.topicTitle}>
+              <Title>TOP CLUSTERS</Title>
+            </View>
+          )}
+          data={clusters}
+          renderRow={this.renderRow}
+        />
+      </View>
     );
   }
 }

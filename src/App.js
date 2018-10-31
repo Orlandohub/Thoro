@@ -8,7 +8,7 @@ import Logout from "./components/Logout";
 import Login from "./components/Login";
 import Topics from './components/Topics';
 
-import { FlatList, ActivityIndicator} from "react-native";
+import { ActivityIndicator} from "react-native";
 import {
   Text,
   View,
@@ -71,16 +71,14 @@ export default class Thoro extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <View styleName="fill-parent">
         <NavigationBar
-        styleName="inline"
+          styleName="inline"
           rightComponent={<Logout userLogout={this.userLogout} />}
-          centerComponent={<Title>TOP CLUSTERS</Title>}
+          centerComponent={<Title>HOME</Title>}
         />
-        <View style={{ flex: 1 }}>
-          <Topics />
-        </View>
-      </React.Fragment>
+        <Topics />
+      </View>
     );
   }
 }

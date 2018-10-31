@@ -7,6 +7,7 @@ export function getTopics() {
     .then(token => {
       return fetch(
           `https://getter.thoro.news/api/topics/${moment().format('YYYY-MM-DD')}/all/all/{"sort":"score"}`,
+          // `https://getter.thoro.news/api/topics/2018-10-30/all/all/{"sort":"score"}`,
           {
             method: "GET",
             headers: {
