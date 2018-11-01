@@ -75,12 +75,6 @@ export default class Thoro extends React.Component {
 
     return (
       <View styleName="fill-parent">
-        <NavigationBar
-          styleName="inline"
-          rightComponent={<Logout userLogout={this.userLogout} />}
-          centerComponent={<Title>HOME</Title>}
-        />
-
         <ListView
           style={{ listContent: { backgroundColor: 'white' }}}
           data={CATEGORIES}

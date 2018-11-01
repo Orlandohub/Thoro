@@ -49,7 +49,7 @@ class Topics extends Component {
 
   renderCluster(cluster) {
     return (
-      <View styleName="vertical h-start" style={styles.clusterTile}>
+      <View styleName="vertical h-start rounded-corners" style={styles.clusterTile}>
         <View styleName="horizontal v-center" style={styles.topicLabel}>
           <Icon name="products" />
           <Subtitle styleName="bold"> {_.capitalize(cluster.mainTheme[0])} </Subtitle>

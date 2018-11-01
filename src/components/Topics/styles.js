@@ -16,7 +16,7 @@ export default StyleSheet.create({
     backgroundColor: '#F0F0F0',
     padding: 10,
     marginTop: 20,
-    borderRadius: 2,
+    // borderRadius: 2,
   },
   topicViewAll: {
     marginTop: 20,

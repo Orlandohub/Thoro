@@ -14,7 +14,31 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+import com.reactnativenavigation.NavigationApplication;
+
+public class MainApplication extends NavigationApplication {
+
+  @Override
+  public boolean isDebug() {
+      // Make sure you are using BuildConfig from your own application
+      return BuildConfig.DEBUG;
+  }
+
+  protected List<ReactPackage> getPackages() {
+      // Add additional packages you require here
+      // No need to add RnnPackage and MainReactPackage
+      return Arrays.<ReactPackage>asList(
+          // eg. new VectorIconsPackage()
+        new PhotoViewPackage(),
+        new LinearGradientPackage(),
+        new VectorIconsPackage()
+      );
+  }
+
+  @Override
+  public List<ReactPackage> createAdditionalReactPackages() {
+      return getPackages();
+  }
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -22,15 +46,15 @@ public class MainApplication extends Application implements ReactApplication {
       return BuildConfig.DEBUG;
     }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new PhotoViewPackage(),
-            new LinearGradientPackage(),
-            new VectorIconsPackage()
-      );
-    }
+    // @Override
+    // protected List<ReactPackage> getPackages() {
+    //   return Arrays.<ReactPackage>asList(
+    //       new MainReactPackage(),
+    //         new PhotoViewPackage(),
+    //         new LinearGradientPackage(),
+    //         new VectorIconsPackage()
+    //   );
+    // }
 
     @Override
     protected String getJSMainModuleName() {

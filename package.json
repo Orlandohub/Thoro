@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
@@ -14,7 +15,8 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.4"
+    "react-native": "0.57.4",
+    "react-native-navigation": "^1.1.492"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
