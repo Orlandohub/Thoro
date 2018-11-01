@@ -1,5 +1,6 @@
 import { ActivityIndicator } from "react-native";
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
   View,
@@ -12,7 +13,9 @@ import {
   Card,
   ListView,
   Tile,
+  Text,
   Icon,
+  Button,
   Image,
 } from '@shoutem/ui';
 
@@ -24,7 +27,7 @@ class Topics extends Component {
   constructor(props) {
     super(props);
 
-    this.renderRow = this.renderRow.bind(this);
+    this.renderCluster = this.renderCluster.bind(this);
 
     this.state = {
       clusters: null,
@@ -33,18 +36,18 @@ class Topics extends Component {
   }
 
   componentDidMount() {
-    return getTopics()
+    const { category } = this.props;
+    return getTopics(category)
       .then(topicsResponse => {
-        console.log('topicsResponse', topicsResponse);
         const { data } = topicsResponse;
         this.setState({
-          clusters: data,
+          clusters: _.slice(data, 0, 5),
           isLoading: false,
         });
       });
   }
 
-  renderRow(cluster) {
+  renderCluster(cluster) {
     return (
       <View styleName="vertical h-start" style={styles.clusterTile}>
         <View styleName="horizontal v-center" style={styles.topicLabel}>
@@ -58,23 +61,36 @@ class Topics extends Component {
 
   render() {
     const clusters = this.state.clusters || {};
+    const { category } = this.props;
 
     return (
       <View styleName="md-gutter-horizontal">
-        <ListView
-          style={{ listContent: { backgroundColor: 'white' }}}
-          loading={true}
-          renderHeader={() => (
-            <View styleName="horizontal h-start" style={styles.topicTitle}>
-              <Title>TOP CLUSTERS</Title>
+        <View styleName="horizontal h-start" style={styles.topicTitle}>
+          {
+            category === 'all' ?
+              <Title>Top Clusters</Title>
+            :
+              <Title>{_.capitalize(category)}</Title>
+          }
+        </View>
+        {
+          _.map(clusters, cluster => this.renderCluster(cluster))
+        }
+        {
+          category === 'all' ?
+            <View styleName="horizontal h-center" style={styles.topicViewAll}>
+              <Button styleName="secondary"><Text>View All</Text></Button>
             </View>
-          )}
-          data={clusters}
-          renderRow={this.renderRow}
-        />
+          :
+            null
+        }
       </View>
     );
   }
+}
+
+Topics.propTypes = {
+  category: PropTypes.array.isRequired,
 }
 
 

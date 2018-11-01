@@ -1,8 +1,10 @@
 import React from "react";
+import _ from 'lodash';
 import { authenticate } from "./api/authentication";
 import { handleResponse } from "./api/utils/responseHandler";
 import { getArticles } from "./api/articles";
 import { getCredentials } from './api/utils/credentials';
+import { CATEGORIES } from './api/settings';
 import Article from "./components/Article";
 import Logout from "./components/Logout";
 import Login from "./components/Login";
@@ -13,6 +15,7 @@ import {
   Text,
   View,
   Title,
+  ListView,
   GridView,
   NavigationBar,
 } from '@shoutem/ui';
@@ -77,7 +80,12 @@ export default class Thoro extends React.Component {
           rightComponent={<Logout userLogout={this.userLogout} />}
           centerComponent={<Title>HOME</Title>}
         />
-        <Topics />
+
+        <ListView
+          style={{ listContent: { backgroundColor: 'white' }}}
+          data={CATEGORIES}
+          renderRow={category => (<Topics category={category} />)}
+        />
       </View>
     );
   }

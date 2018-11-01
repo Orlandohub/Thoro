@@ -18,4 +18,7 @@ export default StyleSheet.create({
     marginTop: 20,
     borderRadius: 2,
   },
+  topicViewAll: {
+    marginTop: 20,
+  }
 });

@@ -35,7 +35,6 @@ class ClusterArticles extends Component {
 
     getArticles(_.toString(articles))
       .then(articlesResponse => {
-        console.log('articlesResponse', articlesResponse);
         const { data } = articlesResponse;
         this.setState({
           articles: data,
@@ -45,7 +44,6 @@ class ClusterArticles extends Component {
 
   renderArticles(articles) {
     return _.map(articles, (article, id) => {
-      console.log('article on cellViews', article);
       return (
         <TouchableOpacity style={styles.article} key={id}>
           <Tile style={{backgroundColor: '#F0F0F0'}}>
