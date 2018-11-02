@@ -8,21 +8,23 @@ import { CATEGORIES } from './api/settings';
 import Article from "./components/Article";
 import Logout from "./components/Logout";
 import Login from "./components/Login";
-import Topics from './components/Topics';
+import TopicsSection from './components/TopicsSection';
+import { NavigationActions } from './navigator';
 
 import { ActivityIndicator} from "react-native";
 import {
   Text,
   View,
-  Title,
   ListView,
-  GridView,
-  NavigationBar,
+  Icon,
+  Button,
 } from '@shoutem/ui';
 
 export default class Thoro extends React.Component {
   constructor(props) {
     super(props);
+
+    NavigationActions.setNavigator(props.navigator);
 
     this.state = { 
       isAuthenticated: false,
@@ -75,10 +77,13 @@ export default class Thoro extends React.Component {
 
     return (
       <View styleName="fill-parent">
+        <View style={{ marginTop: 40 }}>
+          <Button onPress={() => NavigationActions.toggleDrawer()}><Icon name="sidebar" /></Button>
+        </View>
         <ListView
           style={{ listContent: { backgroundColor: 'white' }}}
           data={CATEGORIES}
-          renderRow={category => (<Topics category={category} />)}
+          renderRow={category => (<TopicsSection category={category} />)}
         />
       </View>
     );

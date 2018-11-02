@@ -10,28 +10,28 @@ registerScreens(); // this is where you register all of your app's screens
 Navigation.startSingleScreenApp({
   screen: {
     screen: 'thoro.Thoro',
-    // navigatorStyle: {
-    //   navBarHidden: false,
-    //   // statusBarHideWithNavBar: false,
-    //   // statusBarColor: '#1AA5FD',
-    // },
+    navigatorStyle: {
+      navBarHidden: true,
+      statusBarHideWithNavBar: false,
+      // statusBarColor: '#1AA5FD',
+    },
   },
   appStyle: {
     disabledBackGesture: true,
     orientation: 'portrait',
   },
-  // drawer: {
-  //   left: {
-  //     screen: 'tidy.NavigationDrawer',
-  //     // fixedWidth: 400,
-  //     passProps: {},
-  //   },
-  //   style: {
-  //     leftDrawerWidth: 53,
-  //   },
-  //   disableOpenGesture: true,
-  //   type: 'MMDrawer',
-  //   animationType: 'slide-and-scale',
-  // },
+  drawer: {
+    left: {
+      screen: 'thoro.NavigationDrawer',
+      // fixedWidth: 400,
+      passProps: {},
+    },
+    style: {
+      leftDrawerWidth: 53,
+    },
+    disableOpenGesture: true,
+    type: 'MMDrawer',
+    animationType: 'slide-and-scale',
+  },
 });
 

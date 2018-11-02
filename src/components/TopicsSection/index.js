@@ -23,7 +23,7 @@ import ClusterArticles from '../ClusterArticles';
 import { getTopics } from '../../api/topics';
 import styles from './styles';
 
-class Topics extends Component {
+class TopicsSection extends Component {
   constructor(props) {
     super(props);
 
@@ -89,9 +89,9 @@ class Topics extends Component {
   }
 }
 
-Topics.propTypes = {
+TopicsSection.propTypes = {
   category: PropTypes.array.isRequired,
 }
 
 
-export default Topics;
+export default TopicsSection;
