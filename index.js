@@ -31,7 +31,7 @@ Navigation.startSingleScreenApp({
     },
     disableOpenGesture: true,
     type: 'MMDrawer',
-    animationType: 'slide-and-scale',
+    animationType: 'slide',
   },
 });
 

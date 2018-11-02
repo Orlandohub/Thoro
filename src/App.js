@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from 'react-native';
 import _ from 'lodash';
 import { authenticate } from "./api/authentication";
 import { handleResponse } from "./api/utils/responseHandler";
@@ -77,7 +78,13 @@ export default class Thoro extends React.Component {
 
     return (
       <View styleName="fill-parent">
-        <View style={{ marginTop: 40 }}>
+        <View styleName="horizontal h-start" style={{
+          marginTop: (Platform.OS === 'ios') ? 30 : 0,
+          paddingTop: 10,
+          paddingBottom: 10,
+          borderBottomWidth: 1,
+          borderBottomColor: '#F0F0F0',
+        }}>
           <Button onPress={() => NavigationActions.toggleDrawer()}><Icon name="sidebar" /></Button>
         </View>
         <ListView
