@@ -14,7 +14,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import com.reactnativenavigation.NavigationApplication;
+ import com.reactnativenavigation.NavigationApplication;
 
 public class MainApplication extends NavigationApplication {
 
@@ -28,10 +28,9 @@ public class MainApplication extends NavigationApplication {
       // Add additional packages you require here
       // No need to add RnnPackage and MainReactPackage
       return Arrays.<ReactPackage>asList(
-          // eg. new VectorIconsPackage()
-        new PhotoViewPackage(),
-        new LinearGradientPackage(),
-        new VectorIconsPackage()
+          new PhotoViewPackage(),
+          new LinearGradientPackage(),
+          new VectorIconsPackage()
       );
   }
 
@@ -40,32 +39,27 @@ public class MainApplication extends NavigationApplication {
       return getPackages();
   }
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
-
-    // @Override
-    // protected List<ReactPackage> getPackages() {
-    //   return Arrays.<ReactPackage>asList(
-    //       new MainReactPackage(),
-    //         new PhotoViewPackage(),
-    //         new LinearGradientPackage(),
-    //         new VectorIconsPackage()
-    //   );
-    // }
-
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
-  };
-
   @Override
-  public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
+  public String getJSMainModuleName() {
+      return "index";
   }
+
+  // private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+  //   @Override
+  //   public boolean getUseDeveloperSupport() {
+  //     return BuildConfig.DEBUG;
+  //   }
+
+  //   @Override
+  //   protected String getJSMainModuleName() {
+  //     return "index";
+  //   }
+  // };
+
+  // @Override
+  // public ReactNativeHost getReactNativeHost() {
+  //   return mReactNativeHost;
+  // }
 
   @Override
   public void onCreate() {
